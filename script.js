@@ -1,47 +1,75 @@
+// Definindo referências aos elementos do DOM
+const opcaoSelect = document.getElementById('opcao');
+const salarioInput = document.getElementById('salario');
+const mesesTrabalhoInput = document.getElementById('mesesTrabalho');
+const resultado = document.getElementById('resultado');
+const inputSalarioDiv = document.getElementById('inputSalario');
+const inputMesesDiv = document.getElementById('inputMeses');
+
 function mostrarInputs(opcao) {
-    document.getElementById('inputSalario').style.display = opcao <= 3 ? 'block' : 'none';
-    document.getElementById('inputMeses').style.display = opcao == 3 ? 'block' : 'none';
-}
-
-function executarOpcao() {
-    const opcao = document.getElementById('opcao').value;
-    const salarioInput = document.getElementById('salario');
-    const mesesTrabalhoInput = document.getElementById('mesesTrabalho');
-    const resultado = document.getElementById('resultado');
-
-    mostrarInputs(opcao);
+    // Reseta os campos e oculta os divs
+    inputSalarioDiv.style.display = 'none';
+    salarioInput.value = '';
+    inputMesesDiv.style.display = 'none';
+    mesesTrabalhoInput.value = '';
+    resultado.textContent = '';
 
     switch (opcao) {
         case '1':
-            let salario = parseFloat(salarioInput.value);
-            if (salario <= 1200) salario += salario * 0.15;
-            else if (salario <= 2400) salario += salario * 0.10;
-            else salario += salario * 0.05;
-            resultado.textContent = `Novo salário: R$ ${salario.toFixed(2)}`;
-            break;
-
         case '2':
-            let salarioFerias = parseFloat(salarioInput.value);
-            let valorFerias = salarioFerias + (salarioFerias / 3);
-            resultado.textContent = `Valor das férias: R$ ${valorFerias.toFixed(2)}`;
+            inputSalarioDiv.style.display = 'block';
             break;
-
         case '3':
-            let salario13 = parseFloat(salarioInput.value);
-            let mesesTrabalho = parseInt(mesesTrabalhoInput.value);
-            let valor13 = (salario13 * mesesTrabalho) / 12;
-            resultado.textContent = `Valor do décimo terceiro: R$ ${valor13.toFixed(2)}`;
+            inputSalarioDiv.style.display = 'block';
+            inputMesesDiv.style.display = 'block';
             break;
-
         case '4':
-            resultado.textContent = 'Você optou por sair. Até mais!';
+            resultado.textContent = 'Obrigado por usar a Calculadora de Benefícios!';
             break;
-
-        default:
-            resultado.textContent = 'Opção inválida!';
     }
 }
 
-document.getElementById('opcao').addEventListener('change', function() {
-    mostrarInputs(this.value);
-});
+function executarOpcao() {
+    const opcao = opcaoSelect.value;
+    const salario = parseFloat(salarioInput.value);
+    const mesesTrabalho = parseInt(mesesTrabalhoInput.value);
+
+    switch (opcao) {
+        case '1':
+            if (!salario) {
+                resultado.textContent = 'Por favor, insira o salário antes de calcular.';
+                return;
+            }
+            if (salario <= 1200) {
+                resultado.textContent = 'Novo salário: R$ ' + (salario * 1.15).toFixed(2);
+            } else if (salario <= 2400) {
+                resultado.textContent = 'Novo salário: R$ ' + (salario * 1.10).toFixed(2);
+            } else {
+                resultado.textContent = 'Novo salário: R$ ' + (salario * 1.05).toFixed(2);
+            }
+            break;
+
+        case '2':
+            if (!salario) {
+                resultado.textContent = 'Por favor, insira o salário antes de calcular.';
+                return;
+            }
+            resultado.textContent = 'Valor das férias: R$ ' + (salario + (salario / 3)).toFixed(2);
+            break;
+
+        case '3':
+            if (!salario || !mesesTrabalho) {
+                resultado.textContent = 'Por favor, insira o salário e os meses trabalhados antes de calcular.';
+                return;
+            }
+            resultado.textContent = 'Décimo terceiro: R$ ' + ((salario * mesesTrabalho) / 12).toFixed(2);
+            break;
+
+        case '4':
+            // Esta opção foi tratada no mostrarInputs
+            break;
+    }
+}
+
+// Inicializar
+opcaoSelect.value = '0';

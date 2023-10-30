@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Benefícios</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <div class="container">
-        <h2>Menu de opções:</h2>
-        <ol>
-            <li>Novo salário</li>
-            <li>Férias</li>
-            <li>Décimo terceiro</li>
-            <li>Sair</li>
-        </ol>
-        Digite a opção desejada: <input type="number" id="opcao" min="1" max="4"><br><br>
+<div class="container">
+    <h1>Calculadora de Benefícios</h1>
 
-        <div id="inputs">
-            <div id="inputSalario" style="display:none;">
-                Salário: R$ <input type="number" id="salario">
-            </div>
-            <div id="inputMeses" style="display:none;">
-                Meses trabalhados: <input type="number" id="mesesTrabalho" min="1" max="12">
-            </div>
+    <p>Selecione uma das opções abaixo:</p>
+
+    <select id="opcao" onchange="mostrarInputs(this.value)">
+        <option value="0">-- Selecione uma opção --</option>
+        <option value="1">Novo salário</option>
+        <option value="2">Férias</option>
+        <option value="3">Décimo terceiro</option>
+        <option value="4">Sair</option>
+    </select>
+
+    <div id="inputs">
+        <div id="inputSalario" style="display:none;">
+            Salário: R$ <input type="number" id="salario" title="Digite o salário atual do funcionário">
         </div>
-
-        <button onclick="executarOpcao()">Executar</button>
-        <p id="resultado"></p>
+        <div id="inputMeses" style="display:none;">
+            Meses trabalhados: <input type="number" id="mesesTrabalho" min="1" max="12" title="Digite o número de meses que o funcionário trabalhou durante o ano">
+        </div>
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <!-- Botão para executar a ação de cálculo -->
+    <button onclick="executarOpcao()">Calcular</button>
 
+    <div id="resultado"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
 </html>
