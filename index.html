@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Benefícios</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Menu de opções:</h2>
+        <ol>
+            <li>Novo salário</li>
+            <li>Férias</li>
+            <li>Décimo terceiro</li>
+            <li>Sair</li>
+        </ol>
+        Digite a opção desejada: <input type="number" id="opcao" min="1" max="4"><br><br>
+
+        <div id="inputs">
+            <div id="inputSalario" style="display:none;">
+                Salário: R$ <input type="number" id="salario">
+            </div>
+            <div id="inputMeses" style="display:none;">
+                Meses trabalhados: <input type="number" id="mesesTrabalho" min="1" max="12">
+            </div>
+        </div>
+
+        <button onclick="executarOpcao()">Executar</button>
+        <p id="resultado"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
