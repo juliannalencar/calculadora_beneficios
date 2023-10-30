@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Benefícios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Calculadora de Benefícios</h1>
+    <div class="container">
+        <h1>Calculadora de Benefícios</h1>
+        
+        <p>Selecione uma opção:</p>
+        <select id="opcao" onchange="mostrarInputs(this.value)">
+            <option value="0">Escolha uma opção...</option>
+            <option value="1"><i class="fas fa-money-bill-wave"></i> Novo salário</option>
+            <option value="2"><i class="fas fa-sun"></i> Férias</option>
+            <option value="3"><i class="fas fa-gift"></i> Décimo terceiro</option>
+            <option value="4"><i class="fas fa-door-open"></i> Sair</option>
+        </select>
 
-    <p>Selecione uma das opções abaixo:</p>
-
-    <select id="opcao" onchange="mostrarInputs(this.value)">
-        <option value="0">-- Selecione uma opção --</option>
-        <option value="1">Novo salário</option>
-        <option value="2">Férias</option>
-        <option value="3">Décimo terceiro</option>
-        <option value="4">Sair</option>
-    </select>
-
-    <div id="inputs">
-        <div id="inputSalario" style="display:none;">
-            Salário: R$ <input type="number" id="salario" title="Digite o salário atual do funcionário">
+        <div id="inputs">
+            <div id="inputSalario">
+                <input type="number" id="salario" placeholder="Digite o salário atual..." title="Digite o salário atual do funcionário">
+            </div>
+            
+            <div id="inputMeses" style="display:none;">
+                <input type="number" id="mesesTrabalho" min="1" max="12" placeholder="Digite os meses trabalhados..." title="Digite o número de meses que o funcionário trabalhou durante o ano">
+            </div>
         </div>
-        <div id="inputMeses" style="display:none;">
-            Meses trabalhados: <input type="number" id="mesesTrabalho" min="1" max="12" title="Digite o número de meses que o funcionário trabalhou durante o ano">
-        </div>
+
+        <button onclick="executarOpcao()">Calcular</button>
+        
+        <p id="resultado"></p>
     </div>
 
-    <!-- Botão para executar a ação de cálculo -->
-    <button onclick="executarOpcao()">Calcular</button>
-
-    <div id="resultado"></div>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
