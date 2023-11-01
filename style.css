@@ -68,3 +68,29 @@ button:hover {
     font-weight: bold;
     color: #333;
 }
+
+.fluxograma-button {
+    margin-top: 30px;
+    text-align: center;
+    padding: 10px;
+}
+
+.fluxograma-button a {
+    background-color: #3498db;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.fluxograma-button a:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px);
+}
+
+.fluxograma-button a:active {
+    transform: translateY(1px);
+}
